@@ -57,8 +57,19 @@ body {
 
 
 }
+/*
+.bg-image-small {
+  background-image: url('./src/assets/headingbackground_mobil_640.png');
+}
 
+.bg-image-medium {
+  background-image: url('./src/assets/headingbackground_tablet_2.png');
+}
 
+.bg-image-large {
+  background-image: url('./src/assets/headingbackgrounddesktop5.png');
+}
+*/
 .hoze {
   border:30px solid red;
 }

@@ -7,9 +7,9 @@ export default {
   theme: {
     extend: {
       backgroundImage: theme => ({
-        'image-small': "url('./src/assets/headingbackground_mobil_640.png')",
-        'image-medium': "url('./src/assets/headingbackground_tablet_2.png')",
-        'image-large': "url('./src/assets/headingbackground_desktop_5.png')",}),
+        'image-small': "url('/src/assets/headingbackground_mobil_640.png')",
+        'image-medium': "url('/src/assets/headingbackground_tablet_2.png')",
+        'image-large': "url('/src/assets/headingbackgrounddesktop5.png')",}),
     },
   },
   plugins: [],
