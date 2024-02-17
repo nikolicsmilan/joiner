@@ -3,7 +3,14 @@ import { NavLink } from "react-router-dom";
 import saw from "../assets/saw2.png";
 import avatar from "../assets/avatar.png";
 import menu from "../assets/menu.png";
-const MainNavigation = () => {
+const MainNavigation = ({bookingformRef}) => {
+
+  const scrollToTarget = ({ targetRef }) => {
+    if (targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <nav className="bg-black py-1">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-2">
@@ -50,7 +57,7 @@ const MainNavigation = () => {
             Galéria
           </NavLink>
 
-          <button className="hidden lg:block px-5 py-2 bg-red-600 text-white uppercase font-bold rounded-full">
+          <button   onClick={() => scrollToTarget({ targetRef: bookingformRef })} className="hidden lg:block px-5 py-2 bg-red-600 text-white uppercase font-bold rounded-full">
             időpontfoglalás
           </button>
         </div>

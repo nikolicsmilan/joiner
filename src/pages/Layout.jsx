@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
 import MainNavigation from "../components/MainNavigation";
 import Footer from "../components/Footer";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
+  const bookingformRef = useRef();
   return (
     <div className=" lg:max-w-6xl mx-auto lg:px-4 bg-white">
-      <hedaer>
-        <MainNavigation />
-      </hedaer>
+      <header>
+        <MainNavigation bookingformRef={bookingformRef} />
+      </header>
 
       <main>
-        <Outlet />
+        <Outlet context={bookingformRef} />
       </main>
       <footer>
         <Footer />

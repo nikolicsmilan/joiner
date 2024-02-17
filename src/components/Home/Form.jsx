@@ -1,8 +1,8 @@
 import React from "react";
 
-const Form = () => {
+const Form = ({bookingformRef}) => {
   return (
-    <div className="my-0 lg:mt-[100px]  flex flex-col justify-center  border-0 shadow-2xl border-stone-300 mx-10 p-2 rounded-xl">
+    <div ref={bookingformRef}  className="my-0 lg:mt-[100px]  flex flex-col justify-center  border-0 shadow-2xl border-stone-300 mx-10 p-2 rounded-xl">
       <h2 className="text-center font-bold text-xl lg:text-2xl uppercase lg:my-10">
         Időpontfogalás
       </h2>
