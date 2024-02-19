@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { myAddGeneral } from "../../firebase/Firestore";
-import { validateForm } from "./FormValidation";
+
 const Form = ({ bookingformRef }) => {
   const [localItem, setLocalItem] = useState({
     name: "",
@@ -12,9 +11,9 @@ const Form = ({ bookingformRef }) => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    //console.log("handleInputChange: ", "name: ", name, "value: ", value);
+    console.log("handleInputChange: ", "name: ", name, "value: ", value);
     if (name === "check") {
-      // console.log("run check")
+      console.log("run check")
       setLocalItem((prevItem) => ({
         ...prevItem,
         [name]: event.target.checked,
@@ -26,26 +25,9 @@ const Form = ({ bookingformRef }) => {
       }));
     }
   };
-
   console.log("localItem: ", localItem);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (validateForm(localItem)) {
-    } else {
-      myAddGeneral("message", localItem);
-      setLocalItem({
-        name: "",
-        tel: "",
-        email: "",
-        description: "",
-        check: false,
-      });
-    }
-  };
-
   return (
     <form
-      onSubmit={handleSubmit}
       ref={bookingformRef}
       className="my-0 lg:mt-[100px]  flex flex-col justify-center  border-0 shadow-2xl border-stone-300 mx-10 p-2 rounded-xl"
     >
@@ -128,10 +110,7 @@ const Form = ({ bookingformRef }) => {
         </label>
       </div>
       <div className="lg:px-10 lg:my-10">
-        <button
-          type="submit"
-          className="w-full block  px-5 py-2 bg-red-600 text-white uppercase font-bold rounded-full"
-        >
+        <button className="w-full block  px-5 py-2 bg-red-600 text-white uppercase font-bold rounded-full">
           Küldés
         </button>
       </div>
@@ -140,4 +119,3 @@ const Form = ({ bookingformRef }) => {
 };
 
 export default Form;
-//mx-auto

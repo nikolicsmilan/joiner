@@ -1,11 +1,20 @@
-export const myAddGeneral = async (categoryName, elementName, formData) => {
- 
-    const { name, ...dataToStore } = formData;
-  
-    const docRef = elementName
-      ? doc(db, categoryName, elementName)
-      : doc(collection(db, categoryName));
-  
-    await setDoc(docRef, dataToStore);
-  };
-  
+import { db } from "../firebase";
+import {
+  query,
+  collection,
+  onSnapshot,
+  updateDoc,
+  doc,
+  setDoc,
+  addDoc,
+  getDoc,
+  deleteDoc,
+  getDocs,
+  writeBatch,
+  where,
+} from "firebase/firestore";
+
+export const myAddGeneral = async (collectionName, formData) => {
+  const docRef = doc(collection(db, collectionName));
+  await setDoc(docRef, formData);
+};
