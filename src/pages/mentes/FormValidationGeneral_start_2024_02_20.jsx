@@ -17,7 +17,7 @@ const Form = ({ bookingformRef }) => {
     description: "",
     check: "",
   });
-/*
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     //console.log("handleInputChange: ", "name: ", name, "value: ", value);
@@ -33,23 +33,7 @@ const Form = ({ bookingformRef }) => {
         [name]: value,
       }));
     }
-  };*/
-  const handleInputChange = (event) => {
-    const { name, value, checked, type } = event.target;
-  
-    if (type === "checkbox") {
-      setLocalItem((prevItem) => ({
-        ...prevItem,
-        [name]: checked,
-      }));
-    } else {
-      setLocalItem((prevItem) => ({
-        ...prevItem,
-        [name]: value,
-      }));
-    }
   };
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -83,37 +67,69 @@ const Form = ({ bookingformRef }) => {
       <h2 className="text-center font-bold  text-xl md:text-2xl uppercase lg:my-10">
         Időpontfogalás
       </h2>
-
-      <div className="w-full my-5 mt-10 relative lg:px-10">
-        <InputGeneral
+      <div className="w-full my-10 relative lg:px-10">
+        {error.name && (
+          <p className="text-red-400 absolute mt-[-35px] ml-[10px]">
+            {error.name}
+          </p>
+        )}
+        <div className="px-1 absolute mt-[-12px] ml-[10px] z-20 bg-white w-auto">
+          <p>
+            {" "}
+            Név <span className=" text-red-600">* </span>
+          </p>
+        </div>
+        <input
+          type="text"
           name="name"
-          error={error.name}
-          label="Név"
           value={localItem.name}
-          type="text"
           onChange={handleInputChange}
+          className={`w-full z-10 border-2  h-11 rounded-xl ${
+            error.name ? "border-red-400": "border-stone-300"
+          } `}
         />
       </div>
-
       <div className="w-full my-5 relative lg:px-10">
-        <InputGeneral
+      <InputGeneral error={error.name}
+        label="Név"
+        value={localItem.name}
+        type="text"
+        onChange={handleInputChange}/>
+      </div>
+      <div className="w-full my-5 relative lg:px-10">
+        <p className="text-red-400 absolute mt-[-35px] ml-[10px]">
+          Kérem adja meg a teljes nevét!
+        </p>
+        <div className="px-1 absolute mt-[-12px] ml-[10px] z-20 bg-white w-auto">
+          <p>
+            {" "}
+            E-mail <span className=" text-red-600">* </span>
+          </p>
+        </div>
+        <input
+          type="text"
           name="email"
-          error={error.email}
-          label="E-mail"
-          value={localItem.email}
-          type="text"
           onChange={handleInputChange}
+          value={localItem.email}
+          className="w-full z-10 border-2 border-stone-300 h-11 rounded-xl "
         />
       </div>
-
-      <div className="w-full my-5 relative lg:px-10">
-        <InputGeneral
+      <div className="w-full my-10 relative lg:px-10">
+        <p className="text-red-400 absolute mt-[-35px] ml-[10px]">
+          Kérem adja meg a teljes nevét!
+        </p>
+        <div className="px-1 absolute mt-[-12px] ml-[10px] z-20 bg-white w-auto">
+          <p>
+            {" "}
+            Telefonszám <span className=" text-red-600">* </span>
+          </p>
+        </div>
+        <input
+          type="text"
           name="tel"
-          error={error.tel}
-          label="Telefonszám"
-          value={localItem.tel}
-          type="number"
           onChange={handleInputChange}
+          value={localItem.tel}
+          className="w-full z-10 border-2 border-stone-300 h-11 rounded-xl "
         />
       </div>
 
@@ -133,20 +149,18 @@ const Form = ({ bookingformRef }) => {
       </div>
 
       <div className="flex items-center m-1 my-6 lg:px-10">
-        {error.check && (
-          <p className="text-red-400 absolute mt-[-60px] ml-[10px]">
-            {error.check}
-          </p>
-        )}
+        <p className="text-red-400 absolute mt-[-60px] ml-[10px]">
+          Kérem adja meg a teljes nevét!
+        </p>
         <input
           onChange={handleInputChange}
-          checked={localItem.check}
+          value={localItem.check}
           type="checkbox"
           id="terms"
           name="check"
           className="h-5 w-5 text-indigo-600 rounded-md border-gray-300"
         />
-        <label htmlFor="terms" className="ml-2 text-gray-700">
+        <label for="terms" className="ml-2 text-gray-700">
           Elfogadom az általános szerződési feltételeket
         </label>
       </div>
@@ -163,4 +177,32 @@ const Form = ({ bookingformRef }) => {
 };
 
 export default Form;
-//mx-auto
+
+import React from 'react'
+
+const InputGeneral = ({ error, label, value, type, onChange}) => {
+  return (
+    <div className="">
+    {error && (
+      <p className="text-red-400 absolute mt-[-35px] ml-[10px]">
+        {error}
+      </p>
+    )}
+    <div className="px-1 absolute mt-[-12px] ml-[10px] z-20 bg-white w-auto">
+      <p>
+        {label} <span className=" text-red-600">* </span>
+      </p>
+    </div>
+    <input
+      type={type}
+      value={value}
+      onChange={onChange}
+      className={`w-full z-10 border-2 h-11 rounded-xl ${
+        error ? "border-red-400" : "border-stone-300"
+      } `}
+    />
+  </div>
+  )
+}
+
+export default InputGeneral
