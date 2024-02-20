@@ -11,21 +11,30 @@ const Layout = () => {
   return (
     <div className=" lg:max-w-6xl mx-auto lg:px-4 bg-white">
       <header>
-        <MainNavigation bookingformRef={bookingformRef} toggle={toggle} setToggle={setToggle} />
+        <MainNavigation
+          bookingformRef={bookingformRef}
+          toggle={toggle}
+          setToggle={setToggle}
+        />
       </header>
 
       <AnimatePresence>
         {toggle && (
           <motion.aside
             {...myAnimation("left")}
-            className=" lg:hidden bg-stone-600 opacity-90 w-80 h-full z-50 absolute top-0 left-0"
+            className=" lg:hidden border-0 bg-black opacity-90 w-80 h-full z-50 absolute top-0 left-0"
           >
-            <SideBar />
+            <SideBar   setToggle={setToggle}/>
           </motion.aside>
         )}
       </AnimatePresence>
 
-      <main className="z-40">
+      <main
+        onClick={() => {
+          setToggle(false);
+        }}
+        className="z-40"
+      >
         <Outlet context={bookingformRef} />
       </main>
       <footer>

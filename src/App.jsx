@@ -6,6 +6,7 @@ import Galery from "./pages/Galery";
 import Layout from "./pages/Layout";
 import Error from "./pages/Error";
 import GaleryDetails from "./pages/GaleryDetails";
+import Login from "./pages/Login";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> }, //path: "", ez a 2 alternatíva van de szerintem ez is jó path:"/",
       { path: "galery", element: <Galery /> },
+      { path: "login", element: <Login /> },
      
     ],
   },
