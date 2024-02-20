@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import saw from "../assets/saw2.png";
 import avatar from "../assets/avatar.png";
 import menu from "../assets/menu.png";
-const MainNavigation = ({bookingformRef}) => {
-
+import close from "../assets/close.png";
+const MainNavigation = ({ bookingformRef, toggle, setToggle }) => {
   const scrollToTarget = ({ targetRef }) => {
     if (targetRef.current) {
       targetRef.current.scrollIntoView({ behavior: "smooth" });
@@ -57,7 +57,10 @@ const MainNavigation = ({bookingformRef}) => {
             Galéria
           </NavLink>
 
-          <button   onClick={() => scrollToTarget({ targetRef: bookingformRef })} className="hidden lg:block px-5 py-2 bg-red-600 text-white uppercase font-bold rounded-full">
+          <button
+            onClick={() => scrollToTarget({ targetRef: bookingformRef })}
+            className="hidden lg:block px-5 py-2 bg-red-600 text-white uppercase font-bold rounded-full"
+          >
             időpontfoglalás
           </button>
         </div>
@@ -69,14 +72,36 @@ const MainNavigation = ({bookingformRef}) => {
             className="w-8 filter invert mr-4 cursor-pointer"
           />
         </div>
-        <div className="md:hidden">
-          <img
-            src={menu}
-            alt="avatar"
-            title="Bejelentkezés ikon"
-            className="w-8 filter invert mr-4 cursor-pointer"
-          />
-        </div>
+
+        {!toggle ? (
+          <div
+            className="md:hidden "
+            onClick={() => {
+              setToggle(true);
+            }}
+          >
+            <img
+              src={menu}
+              alt="menu"
+              title="menu ikon"
+              className="w-8 filter invert mr-4 cursor-pointer"
+            />
+          </div>
+        ) : (
+          <div
+            className="md:hidden "
+            onClick={() => {
+              setToggle(false);
+            }}
+          >
+            <img
+              src={close}
+              alt="close menu"
+              title="close menu ikon"
+              className="w-8 filter invert mr-4 cursor-pointer"
+            />
+          </div>
+        )}
       </div>
     </nav>
   );
